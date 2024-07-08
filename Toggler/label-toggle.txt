@@ -1,0 +1,38 @@
+You're correct that the checkbox is hidden using the `hidden` class. In this implementation, the checkbox state is controlled indirectly through the label element. The label is styled to look like a toggle switch, and when the user clicks on the label, it toggles the state of the checkbox.
+
+Here is a breakdown of how it works:
+
+1. **Hidden Checkbox**: The checkbox is hidden with `class="hidden"`, making it invisible on the page.
+
+    ```html
+    <input type="checkbox" name="" id="toggle" class="hidden">
+    ```
+
+2. **Label Element**: The label is styled to look like a toggle switch. It is associated with the checkbox via the `for="toggle"` attribute, which matches the `id` of the checkbox.
+
+    ```html
+    <label for="toggle" class="cursor-pointer">
+        <div class="w-9 h-5 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1">
+            <div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out"></div>
+        </div>
+    </label>
+    ```
+
+3. **Toggle Switch Styling**: The label contains a `div` styled to look like a switch. Clicking on this label triggers the checkbox to change its state (checked or unchecked).
+
+4. **JavaScript for Dark Mode**: The JavaScript listens for clicks on the label (via the checkbox). When the checkbox is checked or unchecked, it toggles the `dark` class on the `html` element, which switches between light and dark mode.
+
+    ```html
+    <script>
+        const checkbox = document.querySelector("#toggle");
+        const html = document.querySelector("html");
+        const toggleDarkMode = function(){
+            checkbox.checked ? html.classList.add("dark") : html.classList.remove("dark");
+        }
+
+        toggleDarkMode();
+        checkbox.addEventListener("click", toggleDarkMode);
+    </script>
+    ```
+
+The key point is that clicking the label toggles the checkbox state, even though the checkbox is hidden. This is a common technique used to create custom-styled toggle switches and checkboxes in web development.s
